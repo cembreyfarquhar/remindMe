@@ -12,10 +12,11 @@ exports.up = function(knex) {
     // title is not unique, set multiple reminders for multiple times a day
     table.string("title", 128).notNullable();
     table.text("description");
-    table.integer("start_time", 14);
-    table.integer("end_time", 14);
-    table.integer("duration", 14);
-    table.integer("rating", 4);
+    // time is nullable
+    table.integer("alarm_time", 14).unsigned();
+    table.boolean("completed_for_day").defaultsTo(false);
+    table.boolean("snoozed").defaultsTo(false);
+    table.integer("snooze_time", 14).unsigned();
   });
 };
 
